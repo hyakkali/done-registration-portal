@@ -16,13 +16,6 @@ function RegistrationForm() {
   const [appointmentTime, setAppointmentTime] = useState(new Date());
   const [message, setMessage] = useState("");
 
-  var s3_config = {
-    bucketName: process.env.AWS_BUCKET_NAME,
-    region: process.env.AWS_REGION,
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-  }
-
   const handleFileInput = (e) => {
     setLicenseImage(e.target.files[0]);
     console.log(e.target.files[0]);
@@ -30,7 +23,14 @@ function RegistrationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    s3_config.dirName = `licenses/${firstName}/${lastName}/${phoneNumber}/${Date.parse(appointmentTime)}`
+    console.log(process.env.REACT_APP_AWS_ACCESS_KEY_ID);
+    const s3_config = {
+      bucketName: process.env.REACT_APP_AWS_BUCKET_NAME,
+      region: process.env.REACT_APP_AWS_REGION,
+      dirName: `licenses/${firstName}/${lastName}/${phoneNumber}/${Date.parse(appointmentTime)}`,
+      accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
+    }
     S3FileUpload.uploadFile(licenseImage, s3_config)
       .then(data => {
           console.log(data.location);
@@ -53,7 +53,6 @@ function RegistrationForm() {
         }
       )
       .catch(err => console.error(err));
-
   }
 
   return (
