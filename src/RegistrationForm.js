@@ -23,7 +23,6 @@ function RegistrationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(process.env.REACT_APP_AWS_ACCESS_KEY_ID);
     const s3_config = {
       bucketName: process.env.REACT_APP_AWS_BUCKET_NAME,
       region: process.env.REACT_APP_AWS_REGION,
@@ -33,9 +32,9 @@ function RegistrationForm() {
     }
     S3FileUpload.uploadFile(licenseImage, s3_config)
       .then(data => {
-          console.log(data.location);
+          const licensePhotoUrl = data.location;
               axios.post(
-                "postUrl",
+                "https://mighty-wave-59858.herokuapp.com/appointment",
                 {
                   firstName,
                   lastName,
@@ -44,7 +43,7 @@ function RegistrationForm() {
                   email,
                   address,
                   appointmentTime: Date.parse(appointmentTime),
-                  licenseImageUrl: data.location
+                  licensePhotoUrl
                 }
               ).then(res => {
                 console.log(res);
