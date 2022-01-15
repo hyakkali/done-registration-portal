@@ -55,7 +55,7 @@ function AppointmentTable() {
 
   useEffect(() => {
     (async () => {
-      const result = await axios("https://mighty-wave-59858.herokuapp.com/appointment?limit=100");
+      const result = await axios(process.env.REACT_APP_REGISTRATION_SERVICE_URL + "/appointment?limit=100");
       setData(result.data.list);
     })();
   }, []);

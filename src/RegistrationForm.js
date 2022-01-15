@@ -36,7 +36,7 @@ function RegistrationForm() {
       .then(data => {
           const licensePhotoUrl = data.location;
               axios.post(
-                "https://mighty-wave-59858.herokuapp.com/appointment",
+                process.env.REACT_APP_REGISTRATION_SERVICE_URL + "/appointment",
                 {
                   firstName,
                   lastName,
