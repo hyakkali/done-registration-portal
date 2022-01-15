@@ -26,7 +26,9 @@ button {
   font-size: 1.2em;
   border-radius: 0.2rem;
   cursor: pointer;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  background-color: #009879;
 }
 button:hover {
   background-color: #c5c5c5;
@@ -35,4 +37,8 @@ button:hover {
   font-size: 1.2em;
   text-align: center;
   color: #be193d;
+}
+
+h2, .label{
+  color: #009879
 }

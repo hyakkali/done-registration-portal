@@ -54,8 +54,11 @@ function RegistrationForm() {
                 setSuccessResponse(true);
               })
               .catch(error => {
-                console.log(error);
-                setMessage(error);
+                if (error.toJSON().status === 500) {
+                  setMessage("An appointment already exists at this time for " + firstName);
+                } else {
+                  setMessage("An unexpected error has occurred. Try again.");
+                }
               });
         }
       )
@@ -92,7 +95,7 @@ function RegistrationForm() {
           onChange={(e) => setLastName(e.target.value)}
           required
         />
-        <p>Date of Birth</p>
+        <p className="label">Date of Birth</p>
         <DatePicker 
           selected={dateOfBirth} 
           onChange={setDateOfBirth}
@@ -124,7 +127,7 @@ function RegistrationForm() {
           onChange={handleFileInput}
           required
         />
-        <p>Appointment Time</p>
+        <p className="label">Appointment Time</p>
         <DatePicker 
           selected={appointmentTime} 
           onChange={setAppointmentTime} 
