@@ -67,13 +67,8 @@ function RegistrationForm() {
 
   if (successResponse) {
     return (
-      <div>
-        <div className="success-container">
-          <h2>{"Success! You have been registered for an appointment on "} {appointmentTime.toLocaleDateString()} {appointmentTime.toLocaleTimeString()}</h2>
-        </div>
-        <div className="success-container">
-          <a href="">Add to calendar</a>
-        </div>
+      <div className="success-container">
+        <h2>{"Success! You have been registered for an appointment on "} {appointmentTime.toLocaleDateString()} {appointmentTime.toLocaleTimeString()}</h2>
       </div>
     )
   }
