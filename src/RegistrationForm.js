@@ -15,6 +15,8 @@ function RegistrationForm() {
   const [licenseImage, setLicenseImage] = useState(null);
   const [appointmentTime, setAppointmentTime] = useState(new Date());
   const [message, setMessage] = useState("");
+  const [successResponse, setSuccessResponse] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleFileInput = (e) => {
     setLicenseImage(e.target.files[0]);
@@ -23,6 +25,7 @@ function RegistrationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmitted(true);
     const s3_config = {
       bucketName: process.env.REACT_APP_AWS_BUCKET_NAME,
       region: process.env.REACT_APP_AWS_REGION,
@@ -48,61 +51,85 @@ function RegistrationForm() {
               ).then(res => {
                 console.log(res);
                 console.log(res.data);
+                setSuccessResponse(true);
+              })
+              .catch(error => {
+                setMessage(error);
               });
         }
       )
       .catch(err => console.error(err));
   }
 
+  if (successResponse) {
+    return (
+      <div>
+        <div className="success-container">
+          <h2>{"Success! You have been registered for an appointment at "} {appointmentTime.toLocaleDateString()} {appointmentTime.toLocaleTimeString()}</h2>
+        </div>
+        <div className="success-container">
+          <a href="">Add to calendar</a>
+        </div>
+      </div>
+    )
+  }
   return (
-    <div className="App">
+    <div className="container">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={firstName}
           placeholder="First name"
           onChange={(e) => setFirstName(e.target.value)}
+          required
         />
         <input
           type="text"
           value={lastName}
           placeholder="Last name"
           onChange={(e) => setLastName(e.target.value)}
+          required
         />
         <DatePicker 
           selected={dateOfBirth} 
           onChange={setDateOfBirth}
+          required
         />
         <input
           type="text"
           value={phoneNumber}
           placeholder="Phone number"
           onChange={(e) => setPhoneNumber(e.target.value)}
+          required
         />
         <input
           type="text"
           value={email}
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           type="text"
           value={address}
           placeholder="Address"
           onChange={(e) => setAddress(e.target.value)}
+          required
         />
         <input
           type="file"
           onChange={handleFileInput}
+          required
         />
         <DatePicker 
           selected={appointmentTime} 
           onChange={setAppointmentTime} 
           showTimeSelect
           dateFormat="Pp"
+          required
         />
 
-        <button type="submit">Create</button>
+        <button type="submit" disabled={submitted}>Create</button>
 
         <div className="message">{message ? <p>{message}</p> : null}</div>
       </form>

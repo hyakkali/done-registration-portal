@@ -35,7 +35,7 @@ function AppointmentTable() {
     {
         Header: "License",
         accessor: "licensePhotoUrl",
-        Cell: e =><a href={e.value} target="_blank"> {e.value} </a>
+        Cell: e =><a href={e.value} target="_blank" rel="noreferrer"> {e.value} </a>
     },
     {
         Header: "Appt Time",

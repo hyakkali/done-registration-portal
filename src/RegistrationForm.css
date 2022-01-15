@@ -1,8 +1,15 @@
-.App {
+.container {
   display: flex;
   justify-content: center;
   margin-top: 5rem;
 }
+
+.success-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
 input {
   display: block;
   width: 20rem;
@@ -26,5 +33,5 @@ button:hover {
 .message {
   font-size: 1.2em;
   text-align: center;
-  color: #36a936;
+  color: #be193d;
 }
