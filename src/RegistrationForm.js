@@ -117,6 +117,7 @@ function RegistrationForm() {
           onChange={(e) => setAddress(e.target.value)}
           required
         />
+        <p className="label">Upload Your License</p>
         <input
           type="file"
           onChange={handleFileInput}
@@ -131,7 +132,7 @@ function RegistrationForm() {
           required
         />
 
-        <button type="submit" disabled={submitted}>Create</button>
+        <button type="submit" disabled={submitted}>Register</button>
 
         <div className="message">{message ? <p>{message}</p> : null}</div>
       </form>
