@@ -1,7 +1,7 @@
 ### Done Registration Portal
 
 #### Registration Form
-* Url: `https://sheltered-basin-96776.herokuapp.com/` or `https://sheltered-basin-96776.herokuapp.com/register`
+* Url: `https://done-registration-portal.herokuapp.com/` or `https://done-registration-portal.herokuapp.com/register`
 
 #### Appointments Table
-* Url: `https://sheltered-basin-96776.herokuapp.com/appointments`
+* Url: `https://done-registration-portal.herokuapp.com/appointments`

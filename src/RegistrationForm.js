@@ -20,7 +20,6 @@ function RegistrationForm() {
 
   const handleFileInput = (e) => {
     setLicenseImage(e.target.files[0]);
-    console.log(e.target.files[0]);
   }
 
   const handleSubmit = (e) => {
@@ -49,8 +48,6 @@ function RegistrationForm() {
                   licensePhotoUrl
                 }
               ).then(res => {
-                console.log(res);
-                console.log(res.data);
                 setSuccessResponse(true);
               })
               .catch(error => {
