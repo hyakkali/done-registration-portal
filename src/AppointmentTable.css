@@ -1,8 +1,5 @@
-thead {color:green;}
-tbody {color:blue;}
-table, th, td {
- border: 1px solid black;
-}
-td, th{
- padding: 5px;
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
 }

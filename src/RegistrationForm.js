@@ -54,6 +54,7 @@ function RegistrationForm() {
                 setSuccessResponse(true);
               })
               .catch(error => {
+                console.log(error);
                 setMessage(error);
               });
         }
@@ -65,7 +66,7 @@ function RegistrationForm() {
     return (
       <div>
         <div className="success-container">
-          <h2>{"Success! You have been registered for an appointment at "} {appointmentTime.toLocaleDateString()} {appointmentTime.toLocaleTimeString()}</h2>
+          <h2>{"Success! You have been registered for an appointment on "} {appointmentTime.toLocaleDateString()} {appointmentTime.toLocaleTimeString()}</h2>
         </div>
         <div className="success-container">
           <a href="">Add to calendar</a>
@@ -76,6 +77,7 @@ function RegistrationForm() {
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
+        <h2>Register for an appointment</h2>
         <input
           type="text"
           value={firstName}
@@ -90,6 +92,7 @@ function RegistrationForm() {
           onChange={(e) => setLastName(e.target.value)}
           required
         />
+        <p>Date of Birth</p>
         <DatePicker 
           selected={dateOfBirth} 
           onChange={setDateOfBirth}
@@ -121,6 +124,7 @@ function RegistrationForm() {
           onChange={handleFileInput}
           required
         />
+        <p>Appointment Time</p>
         <DatePicker 
           selected={appointmentTime} 
           onChange={setAppointmentTime} 

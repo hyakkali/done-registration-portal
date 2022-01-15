@@ -35,7 +35,17 @@ function AppointmentTable() {
     {
         Header: "License",
         accessor: "licensePhotoUrl",
-        Cell: e =><a href={e.value} target="_blank" rel="noreferrer"> {e.value} </a>
+        Cell: e => {
+            return (
+                <a href={e.value} target="_blank" rel="noreferrer"> 
+                    <img 
+                        src={e.value}
+                        height="100"
+                        width="100"
+                    />
+                </a>
+            )
+        }
     },
     {
         Header: "Appt Time",
@@ -52,7 +62,7 @@ function AppointmentTable() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="container">
       <Table columns={columns} data={data} />
     </div>
   );
