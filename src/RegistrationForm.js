@@ -54,12 +54,12 @@ function RegistrationForm() {
                 if (error.toJSON().status === 500) {
                   setMessage("An appointment already exists at this time for " + firstName);
                 } else {
-                  setMessage("An unexpected error has occurred. Try again.");
+                  setMessage("An unexpected error has occurred. Please try again.");
                 }
               });
         }
       )
-      .catch(err => console.error(err));
+      .catch(err => setMessage("Image upload failed. Please try again."));
   }
 
   if (successResponse) {
