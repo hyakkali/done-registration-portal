@@ -5,7 +5,7 @@ import "./AppointmentTable.css";
 import moment from "moment";
 
 function AppointmentTable() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   const columns = useMemo(() => [
     {
@@ -60,6 +60,13 @@ function AppointmentTable() {
     })();
   }, []);
 
+  if (data === null) {
+      return (
+        <div className="container">
+            Loading please wait...
+        </div>
+      )
+  }
   return (
     <div className="container">
       <Table columns={columns} data={data} />
